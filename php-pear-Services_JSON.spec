@@ -3,7 +3,7 @@
 %define		upstream_name	%{_class}_%{_subclass}
 
 Name:		php-pear-%{upstream_name}
-Version:	1.0.2
+Version:	1.0.3
 Release:	%mkrel 1
 Summary:	PHP implementaion of json_encode/decode
 License:	PHP License
