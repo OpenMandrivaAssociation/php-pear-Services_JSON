@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	PHP implementaion of json_encode/decode
 License:	PHP License
 Group:		Development/PHP
@@ -52,7 +52,7 @@ pear install --nodeps --soft --force --register-only \
 %preun
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
-        %{pear_name} >/dev/null || :
+        %{upstream_name} >/dev/null || :
 fi
 
 %files
