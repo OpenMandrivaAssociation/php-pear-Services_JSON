@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.3
-Release:	%mkrel 3
+Release:	%mkrel 2
 Summary:	PHP implementaion of json_encode/decode
 License:	PHP License
 Group:		Development/PHP
@@ -52,11 +52,26 @@ pear install --nodeps --soft --force --register-only \
 %preun
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
-        %{upstream_name} >/dev/null || :
+        %{pear_name} >/dev/null || :
 fi
 
 %files
 %defattr(-,root,root)
 %{_datadir}/pear/%{_class}
 %{_datadir}/pear/packages/%{upstream_name}.xml
+
+
+
+%changelog
+* Fri May 27 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.3-2mdv2011.0
++ Revision: 679578
+- mass rebuild
+
+* Sat Feb 05 2011 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.3-1
++ Revision: 636091
+- update to new version 1.0.3
+
+* Wed Oct 27 2010 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.2-1mdv2011.0
++ Revision: 589589
+- import php-pear-Services_JSON
 
