@@ -1,21 +1,19 @@
-%define		_class		Services
-%define		_subclass	JSON
-%define		upstream_name	%{_class}_%{_subclass}
+%define	_class	Services
+%define	_subclass	JSON
+%define	modname	%{_class}_%{_subclass}
 
-Name:		php-pear-%{upstream_name}
-Version:	1.0.3
-Release:	%mkrel 2
 Summary:	PHP implementaion of json_encode/decode
+Name:		php-pear-%{modname}
+Version:	1.0.3
+Release:	2
 License:	PHP License
 Group:		Development/PHP
-URL:		http://pear.php.net/package/%{upstream_name}
-Source0:	http://download.pear.php.net/package/%{upstream_name}-%{version}.tgz
-Requires(post): php-pear
-Requires(preun): php-pear
-Requires:	php-pear
-BuildRequires:	php-pear
+Url:		http://pear.php.net/package/%{modname}
+Source0:	http://download.pear.php.net/package/%{modname}-%{version}.tgz
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+BuildRequires:	php-pear
+Requires(post,preun):	php-pear
+Requires:	php-pear
 
 %description
 This package provides a simple encoder and decoder for JSON notation. It is
@@ -26,28 +24,23 @@ incoming Javascript requests. JSON format is native to Javascript, and can be
 directly eval()'ed with no further parsing overhead.
 
 %prep
-%setup -q -c
-mv package.xml %{upstream_name}-%{version}/%{upstream_name}.xml
+%setup -qc
+mv package.xml %{modname}-%{version}/%{modname}.xml
 
 %install
-rm -rf %{buildroot}
-
-cd %{upstream_name}-%{version}
-pear install --nodeps --packagingroot %{buildroot} %{upstream_name}.xml
+cd %{modname}-%{version}
+pear install --nodeps --packagingroot %{buildroot} %{modname}.xml
 rm -rf %{buildroot}%{_datadir}/pear/.??*
 
 rm -rf %{buildroot}%{_datadir}/pear/docs
 rm -rf %{buildroot}%{_datadir}/pear/tests
 
 install -d %{buildroot}%{_datadir}/pear/packages
-install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
-
-%clean
-rm -rf %{buildroot}
+install -m 644 %{modname}.xml %{buildroot}%{_datadir}/pear/packages
 
 %post
 pear install --nodeps --soft --force --register-only \
-    %{_datadir}/pear/packages/%{upstream_name}.xml >/dev/null || :
+    %{_datadir}/pear/packages/%{modname}.xml >/dev/null || :
 
 %preun
 if [ "$1" -eq "0" ]; then
@@ -56,22 +49,6 @@ if [ "$1" -eq "0" ]; then
 fi
 
 %files
-%defattr(-,root,root)
 %{_datadir}/pear/%{_class}
-%{_datadir}/pear/packages/%{upstream_name}.xml
-
-
-
-%changelog
-* Fri May 27 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.3-2mdv2011.0
-+ Revision: 679578
-- mass rebuild
-
-* Sat Feb 05 2011 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.3-1
-+ Revision: 636091
-- update to new version 1.0.3
-
-* Wed Oct 27 2010 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.2-1mdv2011.0
-+ Revision: 589589
-- import php-pear-Services_JSON
+%{_datadir}/pear/packages/%{modname}.xml
 
