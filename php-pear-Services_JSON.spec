@@ -5,7 +5,7 @@
 Summary:	PHP implementaion of json_encode/decode
 Name:		php-pear-%{modname}
 Version:	1.0.3
-Release:	3
+Release:	4
 License:	PHP License
 Group:		Development/PHP
 Url:		http://pear.php.net/package/%{modname}
