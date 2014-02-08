@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.3
-Release:	%mkrel 2
+Release:	3
 Summary:	PHP implementaion of json_encode/decode
 License:	PHP License
 Group:		Development/PHP
