@@ -8,7 +8,7 @@ Version:	1.0.3
 Release:	13
 License:	PHP License
 Group:		Development/PHP
-Url:		http://pear.php.net/package/%{modname}
+Url:		https://pear.php.net/package/%{modname}
 Source0:	http://download.pear.php.net/package/%{modname}-%{version}.tgz
 BuildArch:	noarch
 BuildRequires:	php-pear
